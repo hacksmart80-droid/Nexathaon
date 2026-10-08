@@ -1,7 +1,10 @@
 Flask>=3.0.0
+gunicorn>=21.2.0
+setuptools>=68.0.0
+wheel
 paddleocr==2.9.1
 paddlepaddle==2.6.2
-opencv-python>=4.8.0
+opencv-python-headless>=4.8.0
 Pillow>=10.0.0
 PyMuPDF>=1.23.0
 rapidfuzz>=3.0.0

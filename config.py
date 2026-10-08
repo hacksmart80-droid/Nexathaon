@@ -20,6 +20,6 @@ SCHOLARSHIPS_FILE = os.path.join(DATA_DIR, 'scholarships.json')
 CASE_EXPIRY_SECONDS = 7200  # 2 hours
 
 # Server settings
-HOST = '127.0.0.1'
-PORT = 5000
-DEBUG = True
+HOST = os.environ.get('HOST', '0.0.0.0')
+PORT = int(os.environ.get('PORT', 5000))
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1')
