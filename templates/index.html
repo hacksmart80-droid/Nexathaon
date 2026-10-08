@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScholarProof — Check before you apply</title>
+  <meta name="description" content="ScholarProof helps students verify scholarship documents, eligibility rules, and cross-record consistency before applying.">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ====================================================
+       TOP NAVIGATION BAR
+       ==================================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="brand-logo" id="navBrandLogo" role="button" tabindex="0">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <path d="m9 15 2 2 4-4"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">ScholarProof</span>
+          <span class="brand-tagline">“Check before you apply.”</span>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a class="nav-link" id="navLinkScholarships">Scholarships</a></li>
+          <li><a class="nav-link" id="navLinkHowItWorks">How It Works</a></li>
+          <li><a class="nav-link" id="navLinkAbout">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="lang-btn" type="button" aria-label="Language selection">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>English</span>
+        </button>
+
+        <button class="btn-header-cta" id="btnHeaderCheck" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          <span>Check Application</span>
+        </button>
+
+        <div class="user-avatar-badge" title="Verified Session" aria-label="User session">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================
+       STEPPER (VISIBLE ON WORKFLOW STEPS 1-5)
+       ==================================================== -->
+  <div class="container stepper-container" id="stepperContainer" style="display: none;">
+    <div class="stepper-card">
+      <div class="step-item active" id="stepIndicator1">
+        <div class="step-num">1</div>
+        <span class="step-title">Scholarship</span>
+      </div>
+      <div class="step-line" id="stepLine1"></div>
+
+      <div class="step-item" id="stepIndicator2">
+        <div class="step-num">2</div>
+        <span class="step-title">Details</span>
+      </div>
+      <div class="step-line" id="stepLine2"></div>
+
+      <div class="step-item" id="stepIndicator3">
+        <div class="step-num">3</div>
+        <span class="step-title">Documents</span>
+      </div>
+      <div class="step-line" id="stepLine3"></div>
+
+      <div class="step-item" id="stepIndicator4">
+        <div class="step-num">4</div>
+        <span class="step-title">Review & Mismatches</span>
+      </div>
+      <div class="step-line" id="stepLine4"></div>
+
+      <div class="step-item" id="stepIndicator5">
+        <div class="step-num">5</div>
+        <span class="step-title">Results</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="container" style="flex: 1;">
+
+    <!-- ====================================================
+         SCREEN 0: HOME PAGE
+         ==================================================== -->
+    <section class="page-screen active" id="screenHome">
+      <div class="home-hero">
+        <div class="hero-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Scholarship Application Pre-Checker
+        </div>
+
+        <h1>Check your scholarship application before you submit it.</h1>
+        <p>Upload your documents, find missing information, and spot possible mismatches before they become application problems.</p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-lg" id="btnHeroStart" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <path d="m9 15 2 2 4-4"></path>
+            </svg>
+            Check My Application
+          </button>
+          <a class="nav-link" id="linkHowItWorksScroll" style="color: var(--primary); font-weight: 600; font-size: 13px;">
+            See how ScholarProof works &rarr;
+          </a>
+        </div>
+
+        <div class="trust-badges">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> No account required</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--status-info)" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Fresh session each audit</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--status-warning)" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Instant pre-check results</span>
+        </div>
+      </div>
+
+      <!-- Quick Upload Droptarget on Home -->
+      <div class="home-droptarget-preview" id="homeDropZone">
+        <div class="droptarget-icon-circle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <div style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">
+          Drop PDF files here, or <span style="color: var(--primary); text-decoration: underline;">browse documents</span>
+        </div>
+        <div style="font-size: 12px; color: var(--text-muted);">
+          Supported: Aadhaar, Marksheets, Bonafide, Income Certificate, Fee Receipts (PDF, JPG, PNG)
+        </div>
+      </div>
+
+      <!-- Section: Essential Pre-Submission Validations -->
+      <div style="margin-top: 3.5rem;">
+        <span class="section-tag">PRE-SUBMISSION ASSURANCE</span>
+        <h2 class="section-heading">Essential pre-submission validations</h2>
+        <div class="home-features-grid">
+          <div class="feature-card">
+            <div class="feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 21-6-6m6 6v-4.8m0 4.8h-4.8M3 16.2V21m0 0h4.8M3 21l6-6M21 7.8V3m0 0h-4.8M21 3l-6 6M3 7.8V3m0 0h4.8M3 3l6 6"/></svg>
+            </div>
+            <h3>Check Document Consistency</h3>
+            <p>Names, spelling, variations, and personal details matched across records.</p>
+            <span class="card-link">Name & DOB cross-check &rarr;</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            </div>
+            <h3>Find Missing Documents</h3>
+            <p>Spot mandatory certificates, marks, and state clearances before final submission.</p>
+            <span class="card-link">Required list matching &rarr;</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <h3>Eligibility Verification</h3>
+            <p>Verify family income ceilings, marks categories, and minimum academic qualifications.</p>
+            <span class="card-link">Criteria rule engine &rarr;</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            </div>
+            <h3>Get a Readiness Score</h3>
+            <p>Receive a printable score and action checklist: ready-to-submit or needs revision.</p>
+            <span class="card-link">PDF pre-audit report &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Four Simple Steps -->
+      <div id="sectionHowItWorksAnchor" style="margin-top: 4rem; text-align: center;">
+        <span class="section-tag">EASY WORKFLOW</span>
+        <h2 class="section-heading">Four simple steps to submission confidence</h2>
+        <p class="section-subheading">Check your documents in under 90 seconds without complex signups or data retention.</p>
+
+        <div class="home-features-grid" style="text-align: left; margin-top: 1.5rem;">
+          <div class="feature-card">
+            <div class="feat-icon" style="background: var(--primary-subtle); color: var(--primary); font-weight: 700;">1</div>
+            <h3>Choose Scheme</h3>
+            <p>Select the government or private scholarship you intend to apply for (e.g. Post-Matric, State Merit).</p>
+            <span style="font-size: 11px; color: var(--text-muted);">Evaluated in first step</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon" style="background: var(--surface-subtle); font-weight: 700;">2</div>
+            <h3>Upload Folder</h3>
+            <p>Drop your Aadhaar, prior year marks certificate, fee receipt, and college bonafide in one click.</p>
+            <span style="font-size: 11px; color: var(--text-muted);">PDF, JPG, PNG accepted</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon" style="background: var(--surface-subtle); font-weight: 700;">3</div>
+            <h3>Instant Pre-Check</h3>
+            <p>View diagnostic pass/fail audits across spelling, format, and missing document requirements.</p>
+            <span style="font-size: 11px; color: var(--text-muted);">Runs under 15 seconds</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon" style="background: var(--status-success-bg); color: var(--status-success); font-weight: 700;">4</div>
+            <h3>Apply Confidently</h3>
+            <p>Download a pre-submission report with an application readiness score to guide fixes.</p>
+            <span style="font-size: 11px; color: var(--text-muted);">Printable PDF summary</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Pitfall Comparison Banner -->
+      <div class="pitfall-banner">
+        <div class="pitfall-header">
+          <div>
+            <span class="badge badge-warning" style="margin-bottom: 8px;">COMMON REASON FOR REJECTION</span>
+            <h3 style="font-size: 20px; font-weight: 700;">Small clerical mistakes cause 42% of scholarship rejections.</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+              Scholarship evaluation committees reject applications for technical formatting mismatches that could have easily been fixed before filing.
+            </p>
+          </div>
+          <span class="badge badge-danger" style="font-size: 12px; padding: 6px 12px;">Identity & Cap Errors</span>
+        </div>
+
+        <div class="comparison-box-grid">
+          <div class="comparison-card">
+            <div class="comparison-values">
+              <div class="val-box">
+                <span class="val-label">Identity Proof (Aadhaar)</span>
+                <span class="val-text">Ansari Mohd Saif</span>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <div class="val-box">
+                <span class="val-label">College Bonafide Record</span>
+                <span class="val-text">Ansari Mohammed Saif</span>
+              </div>
+            </div>
+            <span class="badge badge-warning">Possible Name Mismatch</span>
+          </div>
+
+          <div class="comparison-card">
+            <div class="comparison-values">
+              <div class="val-box">
+                <span class="val-label">Verified Family Income</span>
+                <span class="val-text">₹2,20,000 / annum</span>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <div class="val-box">
+                <span class="val-label">Configured Income Limit</span>
+                <span class="val-text">Maximum ₹2,50,000</span>
+              </div>
+            </div>
+            <span class="badge badge-success">✓ Requirement Satisfied</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Privacy Guarantee -->
+      <div class="card" style="margin-bottom: 3rem;">
+        <span class="section-tag">PRIVACY FIRST ARCHITECTURE</span>
+        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">Your documents deserve careful handling.</h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">
+          ScholarProof operates an ephemeral processing pipeline. We do not build profiles or retain student files.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+          <div>
+            <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">No Login Walls</h4>
+            <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">Never create an account or provide an email to audit your documents completely.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">Zero Commercialization</h4>
+            <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">Your student records, identity numbers, and academic certificates are never sold or profiled.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">Ephemeral Processing</h4>
+            <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">Working stage documents exist strictly in a temporary session and are cleaned up automatically.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA Banner on Home -->
+      <div style="text-align: center; padding: 2.5rem 0 1rem;">
+        <div class="droptarget-icon-circle" style="margin-bottom: 8px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 6px;">Ready to verify your scholarship folder?</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">Avoid unexpected portal rejections. Free instant pre-check on all your required forms in seconds.</p>
+        <button class="btn btn-primary btn-lg" id="btnBottomPreCheck" type="button">
+          Start Free Pre-Check &rarr;
+        </button>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 10px;">
+          100% Free • Pre-Check Engine for State & Central Scholarship Portals
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================
+         SCREEN 1: SCHOLARSHIP SELECTION & CRITERIA
+         ==================================================== -->
+    <section class="page-screen" id="screenStep1">
+      <div style="margin-bottom: 1.5rem;">
+        <span class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          STEP 1 OF 5 | SCHEME SELECTION
+        </span>
+        <h1 class="section-heading">Which scholarship are you applying for?</h1>
+        <p class="section-subheading">Select a scholarship to check its specific eligibility criteria and required document checklist.</p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="schemeSearchInput" placeholder="Search scholarship (e.g. Post-Matric, National, State Merit...)" autocomplete="off">
+      </div>
+
+      <!-- Scholarship Cards Grid (Populated dynamically from data/scholarships.json) -->
+      <div class="scholarship-grid" id="scholarshipsCardsContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Selected Scheme Verification Criteria Box -->
+      <div class="criteria-detail-box" id="criteriaBox">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div>
+            <h3 style="font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span id="selectedSchemeTitle">Post-Matric Scholarship</span> &mdash; Verification Criteria
+            </h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">These rules will automatically validate your documents in Step 3.</p>
+          </div>
+          <span class="badge badge-success">✓ Verification Active</span>
+        </div>
+
+        <div class="criteria-grid-3">
+          <div class="criteria-box-stat">
+            <span class="stat-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><line x1="12" y1="6" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="18"></line></svg>
+              Annual Income Limit
+            </span>
+            <div class="stat-val" id="critIncomeLimit">Up to ₹2,50,000</div>
+            <div class="stat-sub">Gross family income per valid certificate</div>
+          </div>
+
+          <div class="criteria-box-stat">
+            <span class="stat-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              Minimum Qualifying Marks
+            </span>
+            <div class="stat-val" id="critMinMarks">50.0% Aggregate</div>
+            <div class="stat-sub">Calculated from previous official marksheet</div>
+          </div>
+
+          <div class="criteria-box-stat">
+            <span class="stat-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              Eligible Courses & Levels
+            </span>
+            <div class="stat-val" id="critCourses">All Recognized Degrees</div>
+            <div class="stat-sub">Includes Technical, Degree & Polytechnic</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 13px; font-weight: 700; color: var(--text-primary);">Required Document Checklist</span>
+            <span style="font-size: 11px; color: var(--text-muted);">PDF, JPG, PNG &bull; Max 15MB each</span>
+          </div>
+
+          <div class="required-checklist-matrix" id="requiredDocsListMatrix">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <div class="advisory-notice">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 1px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div>
+            <strong>Pre-Verification Advisory:</strong>
+            ScholarProof provides an automated pre-check based on configured scheme criteria. The official scholarship authority remains the final granting authority for eligibility and disbursement.
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+        <span style="font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Client-side pre-processing &bull; Your data stays private
+        </span>
+
+        <button class="btn btn-primary btn-lg" id="btnContinueToDetails" type="button">
+          Continue to Applicant Details &rarr;
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ====================================================
+         SCREEN 2: APPLICANT DETAILS FORM
+         ==================================================== -->
+    <section class="page-screen" id="screenStep2">
+      <div style="margin-bottom: 1.5rem;">
+        <span class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          STEP 2 OF 5 | APPLICANT PROFILE
+        </span>
+        <h1 class="section-heading">Enter Applicant Details</h1>
+        <p class="section-subheading">Enter applicant profile to cross-reference with uploaded documents and scheme requirements.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <form id="applicantDetailsForm" novalidate>
+          <div class="form-grid">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="inpFullName">Full Name (as per official ID) <span class="required">*</span></label>
+              <input class="form-control" type="text" id="inpFullName" name="full_name" placeholder="e.g. Ansari Mohd Saif" required>
+              <span class="form-error" id="errFullName">Full Name is required.</span>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+              <label class="form-label" for="inpDob">Date of Birth <span class="required">*</span></label>
+              <input class="form-control" type="text" id="inpDob" name="dob" placeholder="DD/MM/YYYY or YYYY-MM-DD" required>
+              <span class="form-error" id="errDob">Valid Date of Birth is required.</span>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="form-label" for="inpGender">Gender</label>
+              <select class="form-control" id="inpGender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+              <label class="form-label" for="inpCategory">Category / Reservation</label>
+              <select class="form-control" id="inpCategory" name="category">
+                <option value="General">General / Open</option>
+                <option value="OBC">OBC (Other Backward Classes)</option>
+                <option value="SC">SC (Scheduled Caste)</option>
+                <option value="ST">ST (Scheduled Tribe)</option>
+                <option value="EWS">EWS (Economically Weaker Section)</option>
+              </select>
+            </div>
+
+            <!-- State of Domicile -->
+            <div class="form-group">
+              <label class="form-label" for="inpState">State of Domicile</label>
+              <input class="form-control" type="text" id="inpState" name="state" placeholder="e.g. Maharashtra">
+            </div>
+
+            <!-- Institute / College -->
+            <div class="form-group">
+              <label class="form-label" for="inpInstitute">College / Institute Name <span class="required">*</span></label>
+              <input class="form-control" type="text" id="inpInstitute" name="institute" placeholder="e.g. Pune Institute of Eng." required>
+              <span class="form-error" id="errInstitute">College / Institute is required.</span>
+            </div>
+
+            <!-- Course -->
+            <div class="form-group">
+              <label class="form-label" for="inpCourse">Enrolled Course / Degree</label>
+              <input class="form-control" type="text" id="inpCourse" name="course" placeholder="e.g. B.Tech Computer Science">
+            </div>
+
+            <!-- Academic Year -->
+            <div class="form-group">
+              <label class="form-label" for="inpAcademicYear">Current Academic Year</label>
+              <input class="form-control" type="text" id="inpAcademicYear" name="academic_year" placeholder="e.g. 2nd Year (2024-25)">
+            </div>
+
+            <!-- Annual Family Income -->
+            <div class="form-group">
+              <label class="form-label" for="inpIncome">Annual Family Income (₹) <span class="required">*</span></label>
+              <input class="form-control" type="text" id="inpIncome" name="annual_income" placeholder="e.g. 2,20,000" required>
+              <span class="form-error" id="errIncome">Please enter a valid income amount.</span>
+            </div>
+
+            <!-- Previous Marks / Percentage -->
+            <div class="form-group">
+              <label class="form-label" for="inpPercentage">Previous Exam Percentage (%)</label>
+              <input class="form-control" type="text" id="inpPercentage" name="percentage" placeholder="e.g. 78.50">
+              <span class="form-error" id="errPercentage">Percentage must be between 0 and 100.</span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Demo Auto-fill Helper for Testers -->
+      <div style="background: var(--surface-subtle); border: 1px solid var(--border-crisp); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">
+          <strong>Testing helper:</strong> Quickly load realistic demo profile details.
+        </span>
+        <button class="btn btn-secondary btn-sm" id="btnAutofillDemo" type="button">
+          Load Demo Profile
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button class="btn btn-secondary" id="btnBackToStep1" type="button">
+          &larr; Back to Scholarship
+        </button>
+        <button class="btn btn-primary btn-lg" id="btnContinueToUpload" type="button">
+          Continue to Document Upload &rarr;
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ====================================================
+         SCREEN 3: DOCUMENT UPLOAD
+         ==================================================== -->
+    <section class="page-screen" id="screenStep3">
+      <div style="margin-bottom: 1.5rem;">
+        <span class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          STEP 3 OF 5 | DOCUMENT ATTACHMENT
+        </span>
+        <h1 class="section-heading">Upload your scholarship documents</h1>
+        <p class="section-subheading" id="uploadSubheading">
+          Add the required files for your selected scheme. We will cross-reference candidate name, DOB, and income threshold consistency across records.
+        </p>
+      </div>
+
+      <!-- Upload Droptarget Zone -->
+      <div class="upload-zone-wrapper" id="fileDropZone">
+        <input type="file" id="hiddenFileInput" style="display: none;" accept=".pdf,.png,.jpg,.jpeg">
+        
+        <div class="upload-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="12" y2="12"></line>
+            <line x1="15" y1="15" x2="12" y2="12"></line>
+          </svg>
+        </div>
+
+        <div class="upload-target-selector">
+          <span style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Select Document Type:</span>
+          <select id="selDocType" style="border: 1px solid var(--border-crisp); border-radius: var(--radius-sm); padding: 4px 8px; font-size: 13px; font-weight: 600; background: #fff;">
+            <option value="identity_proof">Identity Proof (Aadhaar / Voter ID)</option>
+            <option value="income_certificate">Income Certificate</option>
+            <option value="college_proof">College Admission / Bonafide</option>
+            <option value="previous_marksheet">Previous Year Marksheet</option>
+            <option value="bank_proof">Bank Proof (Passbook / Statement)</option>
+            <option value="category_certificate">Category / Caste Certificate</option>
+          </select>
+        </div>
+
+        <div class="upload-title">Drop your documents here</div>
+        <div class="upload-or">OR</div>
+
+        <button class="btn btn-primary" id="btnSelectFiles" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Select Documents
+        </button>
+
+        <div class="upload-formats-hint">
+          Supported formats: <strong>PDF, JPG, PNG</strong> &bull; Max file size: <strong>15MB each</strong> &bull; Multiple files allowed
+        </div>
+      </div>
+
+      <!-- Quick Sample Loader Bar for Development / Testing -->
+      <div style="background: var(--surface-subtle); border: 1px solid var(--border-crisp); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <span style="font-size: 12px; color: var(--text-secondary);">
+          <strong>Instant Demo Testing:</strong> Load pre-generated sample documents for evaluation:
+        </span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn btn-secondary btn-sm" id="btnLoadCompleteDemoDocs" type="button" title="Loads all documents including Ansari Mohd Saif and College Ansari Mohammed Saif">
+            Load Full Demo Set (5 Docs)
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btnLoadMissingDocDemo" type="button" title="Loads set without previous marksheet">
+            Load Set with Missing Marksheet
+          </button>
+        </div>
+      </div>
+
+      <!-- Ready For Pre-Check Files List -->
+      <div class="uploaded-files-card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 16px; font-weight: 700;">
+            Ready For Pre-Check <span id="uploadedFilesCountBadge" style="font-size: 13px; font-weight: 500; color: var(--text-muted);">(0 Files)</span>
+          </h3>
+          <button class="btn-icon-link" id="btnAddMoreDocs" type="button">
+            + Add more
+          </button>
+        </div>
+
+        <div class="files-queue-list" id="filesQueueList">
+          <div style="font-size: 13px; color: var(--text-muted); padding: 14px 0; text-align: center;">
+            No documents uploaded yet. Choose a document type above and drop or select files.
+          </div>
+        </div>
+      </div>
+
+      <!-- Required Checklist Coverage -->
+      <div class="coverage-checklist-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 700;">Required Checklist Coverage</h3>
+            <span style="font-size: 12px; color: var(--text-muted);">Official scheme mandate compared with your staged files.</span>
+          </div>
+          <span class="badge badge-warning" id="coverageCountBadge">0 of 5 Mandatory Uploaded</span>
+        </div>
+
+        <div id="coverageChecklistContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Privacy Guarantee Callout -->
+      <div class="card" style="padding: 16px 20px; margin-bottom: 1.5rem; background: var(--surface-subtle); display: flex; align-items: flex-start; gap: 12px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 1px;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">
+          <strong>Client Data Protection & Confidentiality Guarantee:</strong>
+          Only upload documents needed for your scholarship check. Never upload passwords, OTPs, PINs, or confidential banking credentials. Files are analyzed strictly for pre-check verification and cross-record consistency.
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button class="btn btn-secondary" id="btnBackToStep2" type="button">
+          &larr; Back to Details
+        </button>
+        <button class="btn btn-primary btn-lg" id="btnCheckMyDocuments" type="button">
+          Check My Documents &rarr;
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ====================================================
+         SCREEN 4: REVIEW EXTRACTED DETAILS & MISMATCH RESOLVER
+         ==================================================== -->
+    <section class="page-screen" id="screenStep4">
+      <div style="margin-bottom: 1.5rem;">
+        <span class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          STEP 4 OF 5 | OCR VERIFICATION &amp; CORRECTION
+        </span>
+        <h1 class="section-heading">Review the information found in your documents</h1>
+        <p class="section-subheading">
+          OCR pre-reading is complete. Please verify or edit any field to ensure 100% accuracy before the final readiness check.
+        </p>
+      </div>
+
+      <!-- Discrepancy Alert Box (If Name or Data Variations Detected) -->
+      <div class="discrepancy-card" id="discrepancyAlertCard" style="display: none;">
+        <div class="discrepancy-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--status-warning)" stroke-width="2.2">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <strong style="font-size: 15px; color: #78350f;" id="discrepancyTitle">Possible Differences Detected (1 Item Needs Review)</strong>
+          </div>
+          <span class="badge badge-warning" id="discrepancySeverity">High Impact</span>
+        </div>
+
+        <div class="discrepancy-columns" id="discrepancyColumns">
+          <div class="val-box">
+            <span class="val-label" id="discDoc1Label">Identity Proof (Aadhaar)</span>
+            <span class="val-text" id="discDoc1Val">Ansari Mohd Saif</span>
+          </div>
+          <div class="val-box">
+            <span class="val-label" id="discDoc2Label">College Bonafide Record</span>
+            <span class="val-text" id="discDoc2Val">Ansari Mohammed Saif</span>
+          </div>
+        </div>
+
+        <div style="font-size: 13px; color: #78350f; margin-bottom: 14px;" id="discrepancyExplanation">
+          Difference: Name abbreviation variation ('Mohd' vs 'Mohammed'). Scholarship authorities often require exact character-level match or an official affidavit if abbreviations differ. Choose a standardized name or confirm this variance note for processing.
+        </div>
+
+        <div class="discrepancy-actions">
+          <button class="btn btn-secondary btn-sm" id="btnKeepCollegeName" type="button">
+            Keep 'Ansari Mohammed Saif' as Primary
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btnEditNameManual" type="button">
+            Edit Name Manually
+          </button>
+          <button class="btn btn-primary btn-sm" id="btnConfirmMismatchNote" type="button">
+            Confirm Mismatch Note
+          </button>
+        </div>
+      </div>
+
+      <!-- Extracted Document Records Cards -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 16px; font-weight: 700;">
+          Extracted Document Records <span id="ocrDocsCountText" style="font-size: 13px; font-weight: 500; color: var(--text-muted);">(4 Files)</span>
+        </h3>
+        <span style="font-size: 12px; color: var(--text-muted);">All OCR outputs unlocked for corrections</span>
+      </div>
+
+      <div id="ocrRecordsContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Missing Field Fallback Callout (e.g. Previous Percentage) -->
+      <div id="missingFieldCalloutsContainer">
+        <!-- Injected via JavaScript if marksheet missing or percentage undetected -->
+      </div>
+
+      <!-- Actions -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" id="btnBackToUpload" type="button">
+          &larr; Re-upload Documents
+        </button>
+        <button class="btn btn-primary btn-lg" id="btnRunFullReadiness" type="button">
+          Run Full Readiness Analysis &rarr;
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ====================================================
+         SCREEN 5: APPLICATION READINESS RESULTS
+         ==================================================== -->
+    <section class="page-screen" id="screenStep5">
+      <div style="margin-bottom: 1.5rem;">
+        <span class="section-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          DIAGNOSTIC EVALUATION COMPLETE
+        </span>
+        <h1 class="section-heading">Your Application Check Results</h1>
+        <p class="section-subheading" id="resultsSubheading">
+          Based on the configured Post-Matric Scholarship criteria and your uploaded records.
+        </p>
+      </div>
+
+      <!-- Score Hero Card -->
+      <div class="score-hero-card">
+        <div class="gauge-circle-container">
+          <svg class="gauge-circle-svg" viewBox="0 0 120 120">
+            <circle class="gauge-bg-circle" cx="60" cy="60" r="50"></circle>
+            <circle class="gauge-val-circle" id="gaugeValCircle" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="50"></circle>
+          </svg>
+          <div class="gauge-center-text">
+            <div class="gauge-number" id="gaugeScoreNumber">84%</div>
+            <div class="gauge-subtext">OUT OF 100</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+          <span class="badge badge-warning" id="scoreReadinessBadge" style="font-size: 13px; padding: 5px 14px;">Almost Ready</span>
+        </div>
+
+        <p style="font-size: 14px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.25rem;" id="scoreSummaryText">
+          Based on the documents and configured requirements, your application appears almost ready with 2 items to address.
+        </p>
+
+        <!-- 3-Col Stats -->
+        <div class="stats-3-col">
+          <div class="stat-pill-box">
+            <div class="stat-icon" style="background: var(--status-success-bg); color: var(--status-success);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>
+              <div style="font-size: 15px; font-weight: 700;" id="statPassedCount">5 Checks</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Passed Verification</div>
+            </div>
+          </div>
+
+          <div class="stat-pill-box">
+            <div class="stat-icon" style="background: var(--status-warning-bg); color: var(--status-warning);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div>
+              <div style="font-size: 15px; font-weight: 700;" id="statAttentionCount">2 Need Attention</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Discrepancy / Action</div>
+            </div>
+          </div>
+
+          <div class="stat-pill-box">
+            <div class="stat-icon" style="background: var(--status-error-bg); color: var(--status-error);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            <div>
+              <div style="font-size: 15px; font-weight: 700;" id="statMissingCount">1 Missing File</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Required Certificate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Breakdown Accordion -->
+        <div style="max-width: 680px; margin: 1rem auto 0; text-align: left;">
+          <div class="accordion-item" id="scoreAccordion">
+            <div class="accordion-header" id="scoreAccordionHeader">
+              <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">How is this score calculated?</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="accordion-body" id="scoreAccordionBody">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+                <div>&bull; Required Documents: <strong id="scorePtsDocs">30.0 / 35 pts</strong></div>
+                <div>&bull; Eligibility Rules: <strong id="scorePtsElig">30.0 / 30 pts</strong></div>
+                <div>&bull; Record Consistency: <strong id="scorePtsCons">15.0 / 25 pts</strong></div>
+                <div>&bull; Data Completeness: <strong id="scorePtsComp">9.0 / 10 pts</strong></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 10px;">
+                *Deterministic calculation evaluating file presence, threshold compliance, and name/date parity.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Required: Missing Documents Section -->
+      <div id="resultsMissingSection" style="margin-bottom: 2rem;">
+        <!-- Injected via JavaScript if missing docs exist -->
+      </div>
+
+      <!-- Needs Your Attention Section -->
+      <div id="resultsAttentionSection" style="margin-bottom: 2rem;">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Passed Verifications Section -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Passed Verifications <span id="passedCountHeaderBadge" style="font-size: 13px; font-weight: 500; color: var(--text-muted);">(5 Validated)</span>
+          </h3>
+          <span style="font-size: 12px; color: var(--text-muted);">100% Match on Parameters</span>
+        </div>
+
+        <div id="passedChecksListContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Eligibility Comparison Matrix -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            Eligibility Comparison Matrix
+          </h3>
+          <span style="font-size: 12px; color: var(--text-muted);">Auto-Filtered Criteria</span>
+        </div>
+
+        <table class="matrix-table" id="resultsMatrixTable">
+          <thead>
+            <tr>
+              <th>Criteria Parameter</th>
+              <th>Your Uploaded Value</th>
+              <th>Scheme Requirement</th>
+              <th>Verification Status</th>
+            </tr>
+          </thead>
+          <tbody id="resultsMatrixTbody">
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Reference and Checked Timestamp Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); margin-bottom: 1.5rem; padding: 0 4px;">
+        <span id="caseRefDisplay">Check Ref: SP-2026-M48A2D</span>
+        <span id="caseCheckedTimeDisplay">Checked on 8 May 2024, 16:31 IST</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+        <button class="btn btn-primary btn-lg" id="btnDownloadReportPdf" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download Check Report (PDF)
+        </button>
+
+        <button class="btn btn-secondary btn-lg" id="btnRescanRecords" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+          </svg>
+          Re-Scan all Records
+        </button>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <a id="btnStartNewCheckLink" style="font-size: 13px; color: var(--primary); font-weight: 600; cursor: pointer;">
+          Start New Application Check
+        </a>
+      </div>
+
+      <!-- Official Disclaimer Callout -->
+      <div class="card" style="background: var(--surface-subtle); padding: 16px 20px; font-size: 12px; color: var(--text-muted); line-height: 1.5; text-align: center;">
+        <strong>Disclaimer:</strong> ScholarProof is an independent pre-checking tool designed for prospective candidates. Final eligibility and disbursement decisions rest exclusively with the designated scholarship authority.
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ====================================================
+       PROCESSING STAGE MODAL
+       ==================================================== -->
+  <div class="modal-backdrop" id="processingModal">
+    <div class="modal-dialog">
+      <div class="spinner"></div>
+      <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Analyzing your documents...</h3>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+        Running local PaddleOCR, field extraction, and scheme rule checks.
+      </p>
+
+      <div class="progress-stages-list">
+        <div class="stage-step-item active" id="procStage1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>1. Reading documents &amp; OCR text</span>
+        </div>
+        <div class="stage-step-item" id="procStage2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>2. Extracting applicant &amp; certificate fields</span>
+        </div>
+        <div class="stage-step-item" id="procStage3">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>3. Comparing records across documents</span>
+        </div>
+        <div class="stage-step-item" id="procStage4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>4. Checking scholarship requirements</span>
+        </div>
+        <div class="stage-step-item" id="procStage5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>5. Preparing Application Readiness Score</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================
+       INLINE FIELD EDIT MODAL
+       ==================================================== -->
+  <div class="modal-backdrop" id="editFieldModal">
+    <div class="modal-dialog" style="text-align: left; max-width: 420px;">
+      <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 4px;">Edit Field Value</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+        Update or correct the OCR-detected value below.
+      </p>
+
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label class="form-label" id="editModalFieldLabel">Field Name</label>
+        <input class="form-control" type="text" id="editModalInput" style="width: 100%;">
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 8px;">
+        <button class="btn btn-secondary btn-sm" id="btnCancelEditModal" type="button">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="btnSaveEditModal" type="button">Save Correction</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand-logo" id="footerBrandLogo">
+        <div class="brand-icon" style="width: 24px; height: 24px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span style="font-size: 15px; font-weight: 700;">ScholarProof</span>
+          <span style="font-size: 10px; color: var(--text-muted);">“Check before you apply.”</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a class="nav-link" id="footHowItWorks">How It Works</a>
+        <a class="nav-link" id="footScholarships">Scholarships</a>
+        <a class="nav-link" id="footPrivacy">Privacy</a>
+        <a class="nav-link" id="footAbout">About</a>
+        <a class="nav-link" id="footDisclaimer">Disclaimer</a>
+      </div>
+
+      <div>
+        ScholarProof Prototype &bull; &copy; 2026 ScholarProof
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

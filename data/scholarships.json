@@ -1,0 +1,118 @@
+[
+  {
+    "id": "post_matric_higher_ed",
+    "name": "Post-Matric Scholarship for Higher Education",
+    "provider": "Central / State Dept (Demo Configuration)",
+    "tag": "Central / State Dept",
+    "description": "Financial assistance for meritorious students with family income under ₹2.5 Lakhs.",
+    "target_level": "Undergraduate / Diploma / Post-Graduate",
+    "deadline": "31 Dec 2026",
+    "income_limit": 250000,
+    "minimum_percentage": 50.0,
+    "education_levels": [
+      "Undergraduate",
+      "Diploma",
+      "Post-Graduate",
+      "B.Tech",
+      "B.Sc",
+      "B.Com",
+      "MBBS",
+      "Polytechnic"
+    ],
+    "required_documents": [
+      "identity_proof",
+      "income_certificate",
+      "college_proof",
+      "previous_marksheet",
+      "bank_proof"
+    ],
+    "optional_documents": [
+      "category_certificate"
+    ],
+    "certificate_validity_required": true,
+    "notes": "Pre-check based on configured scheme criteria. Official portal remains final authority."
+  },
+  {
+    "id": "merit_cum_means",
+    "name": "Merit-cum-Means National Scholarship",
+    "provider": "National Portal (Demo Configuration)",
+    "tag": "National Portal",
+    "description": "Financial support for meritorious technical and professional higher education candidates.",
+    "target_level": "Professional & Technical Courses",
+    "deadline": "15 Jan 2026",
+    "income_limit": 250000,
+    "minimum_percentage": 50.0,
+    "education_levels": [
+      "B.Tech",
+      "MBBS",
+      "MCA",
+      "MBA",
+      "Technical Degree"
+    ],
+    "required_documents": [
+      "identity_proof",
+      "income_certificate",
+      "college_proof",
+      "previous_marksheet",
+      "bank_proof"
+    ],
+    "optional_documents": [
+      "category_certificate"
+    ],
+    "certificate_validity_required": true,
+    "notes": "Income ceiling strictly validated against tahsil revenue certificate."
+  },
+  {
+    "id": "state_higher_ed_merit",
+    "name": "State Higher Education Merit Assistance",
+    "provider": "State Government (Demo Configuration)",
+    "tag": "State Government",
+    "description": "State assistance scheme for university students with higher academic distinction.",
+    "target_level": "Recognized University Degree",
+    "deadline": "28 Feb 2026",
+    "income_limit": 300000,
+    "minimum_percentage": 60.0,
+    "education_levels": [
+      "Undergraduate",
+      "Post-Graduate"
+    ],
+    "required_documents": [
+      "identity_proof",
+      "income_certificate",
+      "college_proof",
+      "previous_marksheet",
+      "bank_proof"
+    ],
+    "optional_documents": [
+      "category_certificate"
+    ],
+    "certificate_validity_required": true,
+    "notes": "Requires minimum 60% aggregate in qualifying examination."
+  },
+  {
+    "id": "general_precheck",
+    "name": "I'm not sure / General Pre-Check",
+    "provider": "Universal Check (Baseline Audit)",
+    "tag": "Universal Check",
+    "description": "Don't see your specific scheme? Run a general document consistency, name matching, and certificate validity audit.",
+    "target_level": "Cross-scheme baseline audit",
+    "deadline": "Open Year-Round",
+    "income_limit": 800000,
+    "minimum_percentage": 40.0,
+    "education_levels": [
+      "All Courses & Degrees"
+    ],
+    "required_documents": [
+      "identity_proof",
+      "college_proof",
+      "bank_proof"
+    ],
+    "optional_documents": [
+      "income_certificate",
+      "previous_marksheet",
+      "category_certificate"
+    ],
+    "certificate_validity_required": false,
+    "notes": "Standard cross-document audit checking applicant details and document legibility."
+  }
+]
